@@ -1,0 +1,1457 @@
+/* =========================================
+   BIRTHDAY WEBSITE - REPLICA STYLE
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #45162a 0%,
+            #2b101c 35%,
+            #180b12 75%,
+            #10070c 100%
+        );
+
+    color: #fff;
+
+    font-family: "DM Sans", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN APP
+========================================= */
+
+#app {
+    min-height: 100vh;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   SCREEN
+========================================= */
+
+.screen {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 35px 20px;
+
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================================
+   BACKGROUND HEART CONTAINER
+========================================= */
+
+#hearts-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.floating-heart {
+
+    position: absolute;
+
+    bottom: -30px;
+
+    color: #ff6d9e;
+
+    font-size: 13px;
+
+    opacity: 0;
+
+    text-shadow:
+        0 0 8px rgba(255, 91, 145, 0.8);
+
+    animation:
+        floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   LOCK SCREEN
+========================================= */
+
+#lock-screen {
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #4b172d,
+            #24101a 55%,
+            #14090f
+        );
+}
+
+
+/* =========================================
+   LOCK CARD
+========================================= */
+
+.lock-card {
+
+    width: min(330px, 92vw);
+
+    text-align: center;
+
+    padding: 25px 22px 28px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(20, 8, 14, 0.35);
+
+    border:
+        1px solid rgba(255, 126, 169, 0.08);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================
+   TIME
+========================================= */
+
+.time {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 24px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.subtitle {
+
+    font-size: 11px;
+
+    color: #c79aaa;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   LOCK ICON
+========================================= */
+
+.lock-icon {
+
+    font-size: 22px;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255, 175, 204, 0.4)
+        );
+}
+
+
+/* =========================================
+   LOCK TITLE
+========================================= */
+
+.lock-card h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #ffb3cd;
+
+    margin-bottom: 17px;
+}
+
+
+/* =========================================
+   PIN DOTS
+========================================= */
+
+.pin-display {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-bottom: 8px;
+}
+
+.pin-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #ff6f9e;
+
+    box-shadow:
+        0 0 7px
+        rgba(255, 91, 145, 0.7);
+}
+
+
+#pin-value {
+
+    height: 0;
+
+    overflow: hidden;
+
+    color: transparent;
+}
+
+
+/* =========================================
+   KEYPAD
+========================================= */
+
+.keypad {
+
+    width: 220px;
+
+    margin: 20px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 9px;
+}
+
+
+.keypad button {
+
+    width: 58px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    color: #f7dce6;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.keypad button:hover {
+
+    background:
+        rgba(255, 92, 150, 0.16);
+
+    transform: scale(1.05);
+}
+
+
+.keypad button:active {
+
+    transform: scale(0.9);
+}
+
+
+.keypad .empty-key {
+
+    visibility: hidden;
+}
+
+
+/* =========================================
+   SECTION CONTENT
+========================================= */
+
+.section-content {
+
+    width: min(420px, 92vw);
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.section-content h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+    color: #ff9fbd;
+
+    margin-bottom: 7px;
+
+    text-shadow:
+        0 0 18px
+        rgba(255, 93, 148, 0.25);
+}
+
+
+.section-subtitle {
+
+    color: #b98b9b;
+
+    font-size: 11px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   MEMORY CARD
+========================================= */
+
+.memory-card {
+
+    width: 190px;
+
+    margin: 0 auto;
+
+    padding: 8px;
+
+    background:
+        #f2e6dd;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.45);
+
+    transform:
+        rotate(-1deg);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.memory-card:hover {
+
+    transform:
+        rotate(0deg)
+        translateY(-5px);
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-placeholder {
+
+    width: 100%;
+
+    height: 205px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d5a9b9,
+            #83556a
+        );
+
+    color: #fff;
+
+    border-radius: 1px;
+}
+
+
+.photo-placeholder span {
+
+    font-size: 35px;
+
+    margin-bottom: 5px;
+}
+
+
+.photo-placeholder p {
+
+    font-size: 11px;
+
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   MEMORY CAPTION
+========================================= */
+
+.memory-caption {
+
+    color: #694653;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 11px;
+
+    padding: 9px 4px 5px;
+}
+
+
+/* =========================================
+   SWIPE TEXT
+========================================= */
+
+.swipe-text {
+
+    color: #916d7c;
+
+    font-size: 9px;
+
+    margin: 14px 0;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.surprise-button {
+
+    border: none;
+
+    border-radius: 20px;
+
+    padding: 8px 18px;
+
+    background:
+        rgba(255, 93, 148, 0.13);
+
+    border:
+        1px solid
+        rgba(255, 114, 158, 0.22);
+
+    color: #ffadc7;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.surprise-button:hover {
+
+    background:
+        rgba(255, 93, 148, 0.22);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   WISHES SCREEN
+========================================= */
+
+#wishes-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #421426,
+            #1a0a11 75%
+        );
+}
+
+
+/* =========================================
+   BALLOONS
+========================================= */
+
+.balloons {
+
+    width: 210px;
+
+    margin: 30px auto 15px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    align-items: center;
+
+    justify-items: center;
+
+    gap: 4px 5px;
+}
+
+
+.balloon {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 40px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.balloon:hover {
+
+    transform:
+        translateY(-7px)
+        scale(1.08);
+}
+
+
+.balloon.popped {
+
+    animation:
+        balloonPop 0.45s ease forwards;
+}
+
+
+@keyframes balloonPop {
+
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.35);
+    }
+
+    100% {
+        transform: scale(0);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WISH MESSAGE
+========================================= */
+
+.wish-message {
+
+    width: 260px;
+
+    margin: 12px auto;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 100, 155, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 100, 155, 0.12);
+
+    color: #e8bac9;
+
+    font-size: 11px;
+
+    animation:
+        fadeIn 0.4s ease;
+}
+
+
+.hidden {
+
+    display: none !important;
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.popped-counter {
+
+    color: #916c7a;
+
+    font-size: 9px;
+
+    margin: 10px 0 14px;
+}
+
+
+.popped-counter span {
+
+    color: #ff91b4;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FINAL SCREEN
+========================================= */
+
+#final-screen {
+
+    align-items: flex-start;
+
+    padding-top: 55px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #45162a,
+            #180a10 80%
+        );
+}
+
+
+.final-content {
+
+    width: min(430px, 92vw);
+
+    text-align: center;
+}
+
+
+.final-heart {
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+
+.final-content h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 30px;
+
+    color: #ffa6c2;
+
+    margin-bottom: 6px;
+}
+
+
+.final-content h2 {
+
+    font-size: 12px;
+
+    color: #b98c9d;
+
+    font-weight: 400;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter {
+
+    text-align: left;
+
+    padding: 24px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 153, 185, 0.08);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+.letter p {
+
+    color: #d6b0be;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+
+    margin-bottom: 14px;
+}
+
+
+.letter .signature {
+
+    text-align: right;
+
+    color: #ff91b4;
+
+    margin-top: 20px;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .screen {
+
+        padding:
+            25px 14px;
+    }
+
+    .lock-card {
+
+        width:
+            min(310px, 94vw);
+    }
+
+    .section-content h1 {
+
+        font-size: 26px;
+    }
+
+    .memory-card {
+
+        width: 180px;
+    }
+
+    .photo-placeholder {
+
+        height: 195px;
+    }
+}
+
+/* =========================================
+   LETTER SCREEN
+========================================= */
+
+#letter-screen {
+    background:
+        radial-gradient(
+            circle at center,
+            #421426,
+            #180a10 80%
+        );
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.envelope-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: 35px auto 15px;
+
+    perspective: 800px;
+}
+
+
+.envelope {
+
+    width: 210px;
+
+    height: 135px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease;
+
+    filter:
+        drop-shadow(
+            0 18px 25px
+            rgba(0, 0, 0, 0.45)
+        );
+}
+
+
+.envelope:hover {
+
+    transform:
+        translateY(-6px);
+}
+
+
+/* =========================================
+   ENVELOPE BODY
+========================================= */
+
+.envelope-body {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8f3859,
+            #63243d
+        );
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(255, 166, 194, 0.2);
+}
+
+
+.envelope-body::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        105px solid transparent;
+
+    border-right:
+        105px solid transparent;
+
+    border-bottom:
+        70px solid #742b48;
+
+    z-index: 2;
+}
+
+
+.envelope-body::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        105px solid transparent;
+
+    border-right:
+        0 solid transparent;
+
+    border-bottom:
+        70px solid #542036;
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   ENVELOPE ICON
+========================================= */
+
+.envelope-body span {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size: 35px;
+
+    z-index: 5;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.envelope:hover
+.envelope-body span {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+}
+
+
+/* =========================================
+   ENVELOPE FLAP
+========================================= */
+
+.envelope-flap {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        105px solid transparent;
+
+    border-right:
+        105px solid transparent;
+
+    border-top:
+        70px solid #a04466;
+
+    transform-origin:
+        top center;
+
+    z-index: 6;
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+/* =========================================
+   OPEN ENVELOPE
+========================================= */
+
+.envelope.open
+.envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+}
+
+
+/* =========================================
+   ENVELOPE HINT
+========================================= */
+
+.envelope-hint {
+
+    color: #a98291;
+
+    font-size: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   SECRET LETTER
+========================================= */
+
+.secret-letter {
+
+    width: min(360px, 90vw);
+
+    margin: 20px auto;
+
+    padding: 24px;
+
+    text-align: left;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 246, 240, 0.06);
+
+    border:
+        1px solid
+        rgba(255, 157, 190, 0.12);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.3);
+
+    animation:
+        letterAppear 0.7s ease;
+}
+
+
+.secret-letter h2 {
+
+    text-align: center;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 21px;
+
+    color: #ffa4c1;
+
+    margin-bottom: 18px;
+}
+
+
+.secret-letter p {
+
+    color: #d6b2bf;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    margin-bottom: 13px;
+}
+
+
+.secret-letter
+.letter-signature {
+
+    text-align: right;
+
+    color: #ff91b4;
+
+    margin-top: 20px;
+
+    margin-bottom: 0;
+}
+
+
+@keyframes letterAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================================
+   MEMORY CAROUSEL
+========================================= */
+
+.memory-controls {
+
+    width: 210px;
+
+    margin: 14px auto 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* =========================================
+   ARROW BUTTONS
+========================================= */
+
+.memory-arrow {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255, 150, 180, 0.18);
+
+    background:
+        rgba(255, 100, 150, 0.08);
+
+    color: #ffadc7;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.memory-arrow:hover {
+
+    background:
+        rgba(255, 100, 150, 0.18);
+
+    transform:
+        scale(1.08);
+}
+
+
+.memory-arrow:active {
+
+    transform:
+        scale(0.9);
+}
+
+
+/* =========================================
+   MEMORY DOTS
+========================================= */
+
+.memory-dots {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+}
+
+
+.memory-dot {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 180, 200, 0.25);
+
+    transition:
+        all 0.3s ease;
+}
+
+
+.memory-dot.active {
+
+    width: 18px;
+
+    border-radius: 10px;
+
+    background:
+        #ff78a6;
+
+    box-shadow:
+        0 0 8px
+        rgba(255, 100, 150, 0.5);
+}
+
+
+/* =========================================
+   PHOTO TRANSITION
+========================================= */
+
+.memory-card.changing {
+
+    animation:
+        memoryChange 0.35s ease;
+}
+
+
+@keyframes memoryChange {
+
+    0% {
+
+        opacity: 0.4;
+
+        transform:
+            rotate(-1deg)
+            scale(0.97);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            rotate(-1deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   PHOTO PLACEHOLDER VARIATIONS
+========================================= */
+
+.memory-photo-1 {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d8a5b8,
+            #805268
+        );
+}
+
+
+.memory-photo-2 {
+
+    background:
+        linear-gradient(
+            145deg,
+            #c99aab,
+            #684255
+        );
+}
+
+
+.memory-photo-3 {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d4b0a0,
+            #805b65
+        );
+}
+
+
+.memory-photo-4 {
+
+    background:
+        linear-gradient(
+            145deg,
+            #b890a8,
+            #53354c
+        );
+}
+
+
+.memory-photo-5 {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d1a0b0,
+            #70435d
+        );
+}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Surprise ❤️</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         FLOATING HEARTS
+    ========================================== -->
+
+    <div id="hearts-container"></div>
+
+
+    <!-- =========================================
+         MAIN WEBSITE
+    ========================================== -->
+
+    <main id="app">
+
+
+        <!-- =====================================
+             SCREEN 1 : PIN / LOCK SCREEN
+        ====================================== -->
+
+        <section id="lock-screen" class="screen active">
+
+            <div class="lock-card">
+
+                <div class="time" id="current-time">
+                    13:41
+                </div>
+
+                <p class="subtitle">
+                    Birthday Surprise 🎂
+                </p>
+
+                <div class="lock-icon">
+                    🔐
+                </div>
+
+                <h2>
+                    Enter the secret code 💕
+                </h2>
+
+                <!-- PIN display -->
+
+                <div class="pin-display">
+
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+
+                </div>
+
+
+                <!-- Number display -->
+
+                <div id="pin-value">
+                    ••••
+                </div>
+
+
+                <!-- Keypad -->
+
+                <div class="keypad">
+
+                    <button onclick="enterNumber(1)">1</button>
+                    <button onclick="enterNumber(2)">2</button>
+                    <button onclick="enterNumber(3)">3</button>
+
+                    <button onclick="enterNumber(4)">4</button>
+                    <button onclick="enterNumber(5)">5</button>
+                    <button onclick="enterNumber(6)">6</button>
+
+                    <button onclick="enterNumber(7)">7</button>
+                    <button onclick="enterNumber(8)">8</button>
+                    <button onclick="enterNumber(9)">9</button>
+
+                    <button class="empty-key"></button>
+
+                    <button onclick="enterNumber(0)">0</button>
+
+                    <button onclick="deleteNumber()">⌫</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+      <!-- =====================================
+     SCREEN 2 : CUTE MEMORIES
+====================================== -->
+
+<section id="memories-screen" class="screen">
+
+    <div class="section-content">
+
+        <h1>
+            Cute Memories 💕
+        </h1>
+
+        <p class="section-subtitle">
+            Little moments that are worth remembering ✨
+        </p>
+
+
+        <!-- =================================
+             MEMORY PHOTO
+        ================================== -->
+
+        <div class="memory-card">
+
+            <div class="photo-placeholder"
+                 id="memory-photo">
+
+                <span id="memory-icon">
+                    📸
+                </span>
+
+                <p id="memory-placeholder-text">
+                    Your photo here
+                </p>
+
+            </div>
+
+            <div class="memory-caption"
+                 id="memory-caption">
+
+                Every moment with you is special ❤️
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             PHOTO CONTROLS
+        ================================== -->
+
+        <div class="memory-controls">
+
+            <button
+                class="memory-arrow"
+                onclick="previousMemory()">
+
+                ←
+
+            </button>
+
+
+            <div
+                class="memory-dots"
+                id="memory-dots">
+
+            </div>
+
+
+            <button
+                class="memory-arrow"
+                onclick="nextMemory()">
+
+                →
+
+            </button>
+
+        </div>
+
+
+        <p class="swipe-text">
+            Swipe through the memories 💕
+        </p>
+
+
+        <button
+            class="surprise-button"
+            onclick="showScreen('letter-screen')">
+
+            Next Surprise 💌
+
+        </button>
+
+    </div>
+
+</section>
+<!-- =====================================
+     SCREEN 3 : LETTER
+====================================== -->
+
+<section id="letter-screen" class="screen">
+
+    <div class="section-content">
+
+        <h1>
+            A Letter Just For You 💌
+        </h1>
+
+        <p class="section-subtitle">
+            Because some feelings are better written down ✨
+        </p>
+
+
+        <!-- Envelope -->
+
+        <div class="envelope-container">
+
+            <div class="envelope"
+                 onclick="openLetter()">
+
+                <div class="envelope-flap"></div>
+
+                <div class="envelope-body">
+
+                    <span>
+                        💌
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p class="envelope-hint">
+            Tap the envelope to open it
+        </p>
+
+
+        <!-- Hidden letter -->
+
+        <div id="secret-letter"
+             class="secret-letter hidden">
+
+            <h2>
+                For You ❤️
+            </h2>
+
+            <p>
+                There are some people who come into
+                our lives and make everything feel
+                a little more beautiful.
+            </p>
+
+            <p>
+                You are one of those people.
+            </p>
+
+            <p>
+                I hope you always remember how special
+                you are and how much happiness you bring
+                to the people around you.
+            </p>
+
+            <p>
+                This little surprise is just a small way
+                of saying that you deserve all the love,
+                happiness and beautiful moments in
+                the world. 💕
+            </p>
+
+            <p class="letter-signature">
+                Always with love ❤️
+            </p>
+
+        </div>
+
+
+        <!-- Continue -->
+
+        <button id="letter-continue"
+                class="surprise-button hidden"
+                onclick="showWishes()">
+
+            Continue to the wishes 🎈
+
+        </button>
+
+    </div>
+
+</section>
+
+        <!-- =====================================
+             SCREEN 4 : POP THE WISHES
+        ====================================== -->
+
+        <section id="wishes-screen" class="screen">
+
+            <div class="section-content">
+
+                <h1>
+                    Pop the Wishes 🎈
+                </h1>
+
+                <p class="section-subtitle">
+                    Tap each balloon to reveal a little wish
+                </p>
+
+
+                <!-- Balloons -->
+
+                <div class="balloons">
+
+                    <button class="balloon pink"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                    <button class="balloon yellow"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                    <button class="balloon blue"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                    <button class="balloon purple"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                    <button class="balloon green"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                    <button class="balloon red"
+                            onclick="popBalloon(this)">
+                        🎈
+                    </button>
+
+                </div>
+
+
+                <!-- Wish message -->
+
+                <div id="wish-message"
+                     class="wish-message hidden">
+
+                    I am the luckiest,
+                    because of you ✨
+
+                </div>
+
+
+                <div class="popped-counter">
+
+                    Popped
+                    <span id="popped-count">0</span>/6
+
+                </div>
+
+
+                <button id="continue-button"
+                        class="surprise-button hidden"
+                        onclick="showFinalMessage()">
+
+                    Continue 💫
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCREEN 5 : FINAL MESSAGE
+        ====================================== -->
+
+        <section id="final-screen" class="screen">
+
+            <div class="final-content">
+
+                <div class="final-heart">
+                    ❤️
+                </div>
+
+                <h1>
+                    Happy Birthday! 🎂
+                </h1>
+
+                <h2>
+                    To someone very special 💕
+                </h2>
+
+                <div class="letter">
+
+                    <p>
+                        Today is all about celebrating you.
+                    </p>
+
+                    <p>
+                        Thank you for being such a beautiful
+                        part of my life.
+                    </p>
+
+                    <p>
+                        I hope this birthday brings you
+                        everything your heart wishes for.
+                    </p>
+
+                    <p>
+                        Keep smiling, keep shining,
+                        and always stay the wonderful person
+                        you are. ❤️
+                    </p>
+
+                    <p class="signature">
+                        With lots of love 💕
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
