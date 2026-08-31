@@ -488,66 +488,33 @@ function openLetter() {
    MEMORY CAROUSEL
 ========================================= */
 
+
 const memories = [
-
     {
-        caption:
-            "Every moment with you is special ❤️",
-
-        icon:
-            "📸",
-
-        text:
-            "Memory 1"
+        image: "assets/photo1.jpg",
+        caption: "Every moment with you is special ❤️"
     },
-
     {
-        caption:
-            "Some memories deserve to stay forever ✨",
-
-        icon:
-            "🌸",
-
-        text:
-            "Memory 2"
+        image: "assets/photo2.jpg",
+        caption: "Some memories deserve to stay forever ✨"
     },
-
     {
-        caption:
-            "Smiles that make everything better 💕",
-
-        icon:
-            "😊",
-
-        text:
-            "Memory 3"
+        image: "assets/photo3.jpg",
+        caption: "Smiles that make everything better 💕"
     },
-
     {
-        caption:
-            "A beautiful moment to remember 🌷",
-
-        icon:
-            "📷",
-
-        text:
-            "Memory 4"
+        image: "assets/photo4.jpg",
+        caption: "A beautiful moment to remember 🌷"
     },
-
     {
-        caption:
-            "And many more memories to come ❤️",
-
-        icon:
-            "✨",
-
-        text:
-            "Memory 5"
+        image: "assets/photo5.jpg",
+        caption: "Memories that make me smile ❤️"
+    },
+    {
+        image: "assets/photo6.jpg",
+        caption: "And many more memories to come ✨"
     }
-
 ];
-
-
 let currentMemory = 0;
 
 
@@ -594,12 +561,39 @@ function createMemoryDots() {
 /* =========================================
    UPDATE MEMORY
 ========================================= */
-
 function updateMemory() {
 
     const photo =
         document.getElementById("memory-photo");
 
+    const caption =
+        document.getElementById("memory-caption");
+
+    if (!photo) {
+        return;
+    }
+
+    // Restart animation
+    photo.parentElement.classList.remove("changing");
+
+    void photo.parentElement.offsetWidth;
+
+    photo.parentElement.classList.add("changing");
+
+    const memory =
+        memories[currentMemory];
+
+    // Show actual photo
+    photo.style.backgroundImage =
+        `url("${memory.image}")`;
+
+    photo.style.backgroundSize =
+        "cover";
+
+    photo.style.backgroundPosition =
+        "center";
+
+    // Hide placeholder text
     const icon =
         document.getElementById("memory-icon");
 
@@ -608,49 +602,17 @@ function updateMemory() {
             "memory-placeholder-text"
         );
 
-    const caption =
-        document.getElementById(
-            "memory-caption"
-        );
-
-
-    if (!photo) {
-        return;
+    if (icon) {
+        icon.style.display = "none";
     }
 
+    if (placeholderText) {
+        placeholderText.style.display = "none";
+    }
 
-    // Animation
-    photo.parentElement.classList.remove(
-        "changing"
-    );
-
-    void photo.parentElement.offsetWidth;
-
-    photo.parentElement.classList.add(
-        "changing"
-    );
-
-
-    const memory =
-        memories[currentMemory];
-
-
-    // Update placeholder
-    icon.textContent =
-        memory.icon;
-
-    placeholderText.textContent =
-        memory.text;
-
+    // Update caption
     caption.textContent =
         memory.caption;
-
-
-    // Update background
-    photo.className =
-        "photo-placeholder memory-photo-" +
-        (currentMemory + 1);
-
 
     // Update dots
     const dots =
@@ -666,29 +628,7 @@ function updateMemory() {
         );
 
     });
-
 }
-
-
-/* =========================================
-   NEXT MEMORY
-========================================= */
-
-function nextMemory() {
-
-    currentMemory++;
-
-    if (currentMemory >= memories.length) {
-
-        currentMemory = 0;
-
-    }
-
-    updateMemory();
-
-    createSmallHeart();
-}
-
 
 /* =========================================
    PREVIOUS MEMORY
