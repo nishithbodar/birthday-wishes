@@ -491,76 +491,63 @@ function openLetter() {
 
 const memories = [
     {
-        image: "assets/photo1.jpg",
+        image: "assets/photo1.jpeg",
         caption: "Every moment with you is special ❤️"
     },
     {
-        image: "assets/photo2.jpg",
+        image: "assets/photo2.jpeg",
         caption: "Some memories deserve to stay forever ✨"
     },
     {
-        image: "assets/photo3.jpg",
+        image: "assets/photo3.jpeg",
         caption: "Smiles that make everything better 💕"
     },
     {
-        image: "assets/photo4.jpg",
+        image: "assets/photo4.jpeg",
         caption: "A beautiful moment to remember 🌷"
     },
     {
-        image: "assets/photo5.jpg",
+        image: "assets/photo5.jpeg",
         caption: "Memories that make me smile ❤️"
     },
     {
-        image: "assets/photo6.jpg",
+        image: "assets/photo6.jpeg",
         caption: "And many more memories to come ✨"
     }
 ];
+
 let currentMemory = 0;
 
-
-/* =========================================
-   INITIALIZE DOTS
-========================================= */
 
 function createMemoryDots() {
 
     const dotsContainer =
         document.getElementById("memory-dots");
 
-    if (!dotsContainer) {
-        return;
-    }
+    if (!dotsContainer) return;
 
     dotsContainer.innerHTML = "";
 
     memories.forEach((memory, index) => {
 
-        const dot =
-            document.createElement("span");
+        const dot = document.createElement("span");
 
-        dot.classList.add("memory-dot");
+        dot.className = "memory-dot";
 
         if (index === currentMemory) {
             dot.classList.add("active");
         }
 
         dot.onclick = function () {
-
             currentMemory = index;
-
             updateMemory();
-
         };
 
         dotsContainer.appendChild(dot);
-
     });
 }
 
 
-/* =========================================
-   UPDATE MEMORY
-========================================= */
 function updateMemory() {
 
     const photo =
@@ -569,21 +556,14 @@ function updateMemory() {
     const caption =
         document.getElementById("memory-caption");
 
-    if (!photo) {
-        return;
-    }
+    if (!photo) return;
 
-    // Restart animation
-    photo.parentElement.classList.remove("changing");
-
-    void photo.parentElement.offsetWidth;
-
-    photo.parentElement.classList.add("changing");
 
     const memory =
         memories[currentMemory];
 
-    // Show actual photo
+
+    // Show actual image
     photo.style.backgroundImage =
         `url("${memory.image}")`;
 
@@ -593,11 +573,12 @@ function updateMemory() {
     photo.style.backgroundPosition =
         "center";
 
-    // Hide placeholder text
+
+    // Hide placeholder
     const icon =
         document.getElementById("memory-icon");
 
-    const placeholderText =
+    const placeholder =
         document.getElementById(
             "memory-placeholder-text"
         );
@@ -606,15 +587,19 @@ function updateMemory() {
         icon.style.display = "none";
     }
 
-    if (placeholderText) {
-        placeholderText.style.display = "none";
+    if (placeholder) {
+        placeholder.style.display = "none";
     }
 
-    // Update caption
-    caption.textContent =
-        memory.caption;
 
-    // Update dots
+    // Caption
+    if (caption) {
+        caption.textContent =
+            memory.caption;
+    }
+
+
+    // Active dot
     const dots =
         document.querySelectorAll(
             ".memory-dot"
@@ -630,30 +615,27 @@ function updateMemory() {
     });
 }
 
-/* =========================================
-   PREVIOUS MEMORY
-========================================= */
 
-function previousMemory() {
+function nextMemory() {
 
-    currentMemory--;
-
-    if (currentMemory < 0) {
-
-        currentMemory =
-            memories.length - 1;
-
-    }
+    currentMemory =
+        (currentMemory + 1) %
+        memories.length;
 
     updateMemory();
-
-    createSmallHeart();
 }
 
 
-/* =========================================
-   INITIALIZE
-========================================= */
+function previousMemory() {
+
+    currentMemory =
+        (currentMemory - 1 +
+        memories.length) %
+        memories.length;
+
+    updateMemory();
+}
+
 
 createMemoryDots();
 updateMemory();
