@@ -9,7 +9,7 @@
 
 let enteredPin = "";
 
-const correctPin = "1234";
+const correctPin = "0309";
 
 let poppedBalloons = 0;
 
